@@ -1,7 +1,8 @@
 # Large-Data-Analysis-using-MapReduce-Pig-and-Hive-on-Vagrant-and-Google-Dataproc
 
 The below tasks are done in both Vagrant and Google Dataproc. 
-# Vagrant Setup: Please see VagrantSetup repository 
+
+Vagrant Setup: Please see Hive_Metastore_Error_fix repository.
 
 # Tasks:
 Using MapReduce/Pig/Hive as required, carry out the following tasks:
