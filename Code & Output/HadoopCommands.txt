@@ -1,0 +1,44 @@
+#######################################################
+#													  #
+#		NAME		: Salman Khaleel Sab			  #
+#		STUDENT ID	: 18210266						  #
+#		EMAIL ID	: salman.khaleelsab2@mail.dcu.ie  #
+#													  #
+#######################################################
+
+Basic Hadoop Commands:
+
+1. Create a directory in Hadoop file system:
+
+	hdfs dfs -mkdir hdfs://localhost:9000/<dir name>
+
+2. Moving files from local directory to Hadoop directory
+	
+	hdfs dfs -put <local dir path> hdfs://localhost:9000/
+
+3. To list the Direcories under Hadoop:
+
+	hdfs dfs -ls /
+
+4. To view the content of a text file under Hadoop Directory:
+
+	hdfs dfs -cat /<path>/<file.txt>
+
+5. Moving files from Hadoop directory to Local directory
+
+	hdfs dfs -copyToLocal <hadoop path> <local path>
+
+6. To format Hadoop namenode
+
+	cd /usr/local/hadoop/bin
+	hadoop namenode -format
+
+7. To start Hadoop daemons
+
+	cd /usr/local/hadoop/sbin
+	./start-all.sh
+	./mr-jobhistory-daemon.sh start historyserver
+
+8. To check if all the Hadoop Daemons started
+
+	jps

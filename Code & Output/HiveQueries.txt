@@ -1,0 +1,54 @@
+#######################################################
+#													  #
+#		NAME		: Salman Khaleel Sab			  #
+#		STUDENT ID	: 18210266						  #
+#		EMAIL ID	: salman.khaleelsab2@mail.dcu.ie  #
+#													  #
+#######################################################
+
+HIVE Queries
+
+USE assignmentOne;
+
+CREATE TABLE pigToHive (Id int,Score int,OwnerUserId int,OwnerDisplayName String,Body String,Title String) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LOCATION 'hdfs://localhost:9000/pigOutputWithoutNull/';
+
+DESCRIBE pigToHive;
+
+1 
+SELECT  Id,Score,Title FROM pigToHive ORDER BY Score desc limit 10;
+
+2
+SELECT SUM(Score) AS Total_Score, OwnerUserId
+     FROm pigToHive 
+     GROUP BY OwnerUserId
+     ORDER BY Total_Score DESC
+     LIMIT 10;
+
+3.
+SELECT COUNT(DISTINCT OwnerUserId) FROM pigToHive WHERE (Body like '%hadoop%' OR Title like '%hadoop%’);
+
+4.
+#Creating another table TFID to store ownerUserID of top 10 users by post scores.
+
+CREATE TABLE TFIDF AS (SELECT SUM(Score) AS Total_Score, OwnerUserId FROM pigToHive GROUP BY OwnerUserId ORDER BY Total_Score DESC LIMIT 10);
+
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 87234" > /vagrant/FirstAssignment/HiveOutput/87234.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 4883" > /vagrant/FirstAssignment/HiveOutput/4883.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 9951" > /vagrant/FirstAssignment/HiveOutput/9951.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 6068" > /vagrant/FirstAssignment/HiveOutput/6068.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 89904" > /vagrant/FirstAssignment/HiveOutput/89904.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 51816" > /vagrant/FirstAssignment/HiveOutput/51816.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 49153" > /vagrant/FirstAssignment/HiveOutput/49153.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 95592" > /vagrant/FirstAssignment/HiveOutput/95592.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 63051" > /vagrant/FirstAssignment/HiveOutput/63051.txt
+
+hive -e "select Body,Title FROM assignmentone.pigToHive WHERE owneruserId = 39677" > /vagrant/FirstAssignment/HiveOutput/39677.txt

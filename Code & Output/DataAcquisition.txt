@@ -1,0 +1,31 @@
+#######################################################
+#													  #
+#		NAME		: Salman Khaleel Sab			  #
+#		STUDENT ID	: 18210266						  #
+#		EMAIL ID	: salman.khaleelsab2@mail.dcu.ie  #
+#													  #
+#######################################################
+
+Link: https://data.stackexchange.com/stackoverflow/query/new 
+
+Queries:
+
+1.
+select TOP 50000 * from posts order by viewcount desc;
+MAX = 7661548
+MIN = 87000
+
+2.
+select top 50000 * from posts where viewcount < 87000 order by viewcount desc;
+MAX = 86996
+MIN = 51207
+
+3.
+select top 50000 * from posts where viewcount < 51207 order by viewcount desc;
+MAX = 51206
+MIN =  36714
+
+4.
+select top 50000 * from posts where viewcount < 36714 order by viewcount desc;
+MAX =  36713
+MIN = 28677

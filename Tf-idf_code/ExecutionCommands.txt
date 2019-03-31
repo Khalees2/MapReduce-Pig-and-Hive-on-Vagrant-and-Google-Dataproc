@@ -1,0 +1,54 @@
+
+#####################################################################s
+#													  
+#		NAME		: Salman Khaleel Sab			  
+#		STUDENT ID	: 18210266						  
+#		EMAIL ID	: salman.khaleelsab2@mail.dcu.ie  
+#													  
+#####################################################################
+
+/usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.9.0.jar  
+
+hdfs dfs -rm -r  /assignmentone/tfout* 
+
+hdfs dfs -ls  /user/tfidf/tfinput/
+
+hadoop jar \
+     /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.9.0.jar  \
+     -mapper /home/vagrant/code/tfidfcode/mapper1.py \
+     -reducer /home/vagrant/code/tfidfcode/reducer1.py \
+     -input /assignmentone/tfinput/95592.txt \
+     -output /assignmentone/tfoutput1
+  
+hdfs dfs -ls /assignmentone/tfoutput1
+
+hadoop jar \
+     /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.9.0.jar  \
+     -mapper /home/vagrant/code/tfidfcode/mapper2.py \
+     -reducer /home/vagrant/code/tfidfcode/reducer2.py \
+     -input /assignmentone/tfoutput1/part-00000 \
+     -output /assignmentone/tfoutput2 
+
+hdfs dfs -ls /assignmentone/tfoutput2
+
+hadoop jar \
+     /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.9.0.jar  \
+     -mapper /home/vagrant/code/tfidfcode/mapper3.py \
+     -reducer /home/vagrant/code/tfidfcode/reducer3.py \
+     -input /assignmentone/tfoutput2/part-00000 \
+     -output /assignmentone/tfoutput3  
+
+hdfs dfs -ls /assignmentone/tfoutput3
+
+hadoop jar \
+     /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.9.0.jar  \
+     -numReduceTasks 0 \
+     -mapper /home/vagrant/code/tfidfcode/mapper4.py \
+     -input /assignmentone/tfoutput3/part-00000 \
+     -output /assignmentone/tfoutput4  
+
+
+hdfs dfs -ls  /assignmentone/tfoutput4
+
+hdfs dfs -getmerge /assignmentone/tfoutput4 95592.txt
+  

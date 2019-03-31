@@ -1,0 +1,3 @@
+Tf-Idf code is referred from Github. Below is the link for the source code
+
+https://github.com/devangpatel01/TF-IDF-implementation-using-map-reduce-Hadoop-python-

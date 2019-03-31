@@ -1,0 +1,36 @@
+
+#######################################################
+#													  #
+#		NAME		: Salman Khaleel Sab			  #
+#		STUDENT ID	: 18210266						  #
+#		EMAIL ID	: salman.khaleelsab2@mail.dcu.ie  #
+#													  #
+#######################################################
+
+HIVE Queries
+
+CREATE DATABASE assignmentOnGoogle;
+
+USE assignmentOnGoogle;
+
+CREATE TABLE hiveOnDataProc (Id int,Score int,OwnerUserId int,OwnerDisplayName String,Body String,Title String) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LOCATION '/pigoutput/';
+
+DESCRIBE hiveOnDataProc;
+
+1 
+SELECT  Id,Score,Title FROM hiveOnDataProc ORDER BY Score desc limit 10;
+
+2
+SELECT SUM(Score) AS Total_Score, OwnerUserId
+     FROm hiveOnDataProc 
+     GROUP BY OwnerUserId
+     ORDER BY Total_Score DESC
+     LIMIT 10;
+
+4980 values of OwnerUserId is NULL that is why it is showing NULL for the first entry. If we run “SELECT SUM(Score) AS Total_Score,OwnerUserId FROm hiveOnDataProc WHERE OwnerUserId IS NULL GROUP BY OwnerUserId;” It will show 32076 is the sum of scores of all the owner user id which are having NULL; Screenshot is provided for the same.
+
+3.
+SELECT COUNT(DISTINCT OwnerUserId) FROM hiveOnDataProc WHERE (Body like '%hadoop%' OR Title like '%hadoop%');
+
+
+
